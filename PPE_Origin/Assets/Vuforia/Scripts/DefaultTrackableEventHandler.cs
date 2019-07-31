@@ -8,6 +8,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using UnityEngine.Video;      //added
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
@@ -98,6 +99,15 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+        // added
+
+        if (mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>() != null)
+
+        {
+
+            mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>().Play();
+
+        }
     }
 
 
@@ -118,6 +128,15 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
+        // added
+
+        if (mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>() != null)
+
+        {
+
+            mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>().Pause();
+
+        }
     }
 
     #endregion // PROTECTED_METHODS
