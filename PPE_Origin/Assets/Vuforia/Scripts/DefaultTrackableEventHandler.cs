@@ -24,6 +24,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     protected TrackableBehaviour.Status m_PreviousStatus;
     protected TrackableBehaviour.Status m_NewStatus;
 
+    public Transform PanelScanMarker;
+    public Transform PanelMenu;
+
     #endregion // PROTECTED_MEMBER_VARIABLES
 
     #region UNITY_MONOBEHAVIOUR_METHODS
@@ -108,6 +111,10 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>().Play();
 
         }
+
+        PanelScanMarker.gameObject.SetActive(false);
+        PanelMenu.gameObject.SetActive(true);
+
     }
 
 
@@ -137,6 +144,10 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
             mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>().Pause();
 
         }
+
+        PanelScanMarker.gameObject.SetActive(true);
+        PanelMenu.gameObject.SetActive(false);
+
     }
 
     #endregion // PROTECTED_METHODS
