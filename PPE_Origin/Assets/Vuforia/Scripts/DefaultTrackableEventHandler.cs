@@ -8,6 +8,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 
 using UnityEngine;
 using Vuforia;
+using UnityEngine.Video;      //added
 
 /// <summary>
 /// A custom handler that implements the ITrackableEventHandler interface.
@@ -22,6 +23,9 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
     protected TrackableBehaviour mTrackableBehaviour;
     protected TrackableBehaviour.Status m_PreviousStatus;
     protected TrackableBehaviour.Status m_NewStatus;
+
+    public Transform PanelScanMarker;
+    public Transform PanelMenu;
 
     #endregion // PROTECTED_MEMBER_VARIABLES
 
@@ -98,6 +102,19 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Enable canvas':
         foreach (var component in canvasComponents)
             component.enabled = true;
+        // added
+
+        if (mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>() != null)
+
+        {
+
+            mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>().Play();
+
+        }
+
+        PanelScanMarker.gameObject.SetActive(false);
+        PanelMenu.gameObject.SetActive(true);
+
     }
 
 
@@ -118,6 +135,19 @@ public class DefaultTrackableEventHandler : MonoBehaviour, ITrackableEventHandle
         // Disable canvas':
         foreach (var component in canvasComponents)
             component.enabled = false;
+        // added
+
+        if (mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>() != null)
+
+        {
+
+            mTrackableBehaviour.gameObject.GetComponentInChildren<VideoPlayer>().Pause();
+
+        }
+
+        PanelScanMarker.gameObject.SetActive(true);
+        PanelMenu.gameObject.SetActive(false);
+
     }
 
     #endregion // PROTECTED_METHODS
